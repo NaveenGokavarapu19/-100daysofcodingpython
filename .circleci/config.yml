@@ -24,5 +24,5 @@ jobs:
             . venv/bin/activate
             cd CalculatorLibrary
             flake8 --exclude=venv* --statistics
-            pytest -v test_calculator.py
+
 
