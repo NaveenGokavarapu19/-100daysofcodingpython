@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/python:3.7
 
-    working_directory: ~/repo/CalculatorLibrary
+    working_directory: ~/repo
 
     steps:
       # Step 1: obtain repo from GitHub
@@ -14,14 +14,15 @@ jobs:
       - run:
           name: install dependencies
           command: |
-           ../python3 -m venv venv
-           ../venv/bin/activate
-           pip install -r requirements.txt
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r CalculatorLibrary/requirements.txt
       # Step 3: run linter and tests
       - run:
           name: run tests
           command: |
-            ../venv/bin/activate
+            . venv/bin/activate
+            cd CalculatorLibrary
             flake8 --exclude=venv* --statistics
             pytest -v --cov=calculator
 
